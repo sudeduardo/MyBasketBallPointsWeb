@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "MyBasketBallPointsWeb"
+  "defaultProject": "MyBasketBallPointsWeb",
+  "cli": {
+    "analytics": "4d564661-124e-47ac-899c-0179515c32e5"
+  }
 }
