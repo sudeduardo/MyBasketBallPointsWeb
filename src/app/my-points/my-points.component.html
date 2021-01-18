@@ -1,0 +1,68 @@
+<div class="row">
+  <form *ngIf="openFormGame" class="col-sm-6" [formGroup]="GameForm" (submit)='submitGame()'>
+    <div class="form-group">
+      <label for="date-game">Data do Jogo</label>
+      <input type="date" class="form-control" id="date-game" formControlName='date'>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Pontos que eu fiz</label>
+      <input type="number" min="1" class="form-control" id="points-game" placeholder="Pontos" formControlName="points">
+    </div>
+    <button type="submit" class="btn btn-primary"  [disabled]='!GameForm.valid'>Salvar</button>
+  </form>
+  
+  <div [ngClass]="{'col-sm-12':!openFormGame,'col-sm-6':openFormGame}">
+    <button style="margin: 0.5em;" (click)='openFormGame = !openFormGame' class=" btn btn-warning">{{openFormGame ? 'Voltar': 'Lançar Novo Jogo'}}</button>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Pontos</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let game of games'>
+          <td> {{ game.date | date:'d'}}/{{ game.date | date:'MM'}}/{{ game.date | date:'y'}}</td>
+          <td>{{game.points}}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-danger" (click)="openModalDeleteConfirm(template,game)"> Excluir</button>
+            </div>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Excluir Jogo</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModalDeleteConfirm()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-hover" *ngIf="gameSelected">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Pontos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ gameSelected.date | date:'d'}}/{{ gameSelected.date | date:'MM'}}/{{ gameSelected.date | date:'y'}}</td>
+          <td>{{gameSelected.points}}</td>
+        </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeModalDeleteConfirm()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmModalDeleteGame()">Sim</button>
+  </div>
+</ng-template>

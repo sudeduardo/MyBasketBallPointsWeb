@@ -1,0 +1,64 @@
+<div *ngIf="!results">
+    <h3>Carregando...</h3>
+</div>
+ <div *ngIf="results">
+    <div class="row">
+        <div class="col-8">
+            <h3>Resultados</h3>
+        </div>
+        <div class="col-4">
+            <h3>{{ results.dataStart | date:'d'}}/{{ results.dataStart | date:'MM'}}/{{ results.dataStart | date:'y'}} até {{ results.dataEnd | date:'d'}}/{{ results.dataEnd | date:'MM'}}/{{ results.dataEnd | date:'y'}}</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3>Jogos Disputados:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.amountGame}}</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3>Total de pontos marcados na temporada:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.countAllPoints}}</h3> 
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-8">
+            <h3>Média de pontos por jogo:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.avgPointPerGame.toFixed(2)}}</h3> 
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-8">
+            <h3>Maior pontuação em um jogo:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.maxPointInGames}}</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3>Menor pontuação em um jogo:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.minPointInGames}}</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3>Quantidade de vezes que bateu o próprio recorde:</h3>
+        </div>
+        <div class="col-4"> 
+               <h3>{{results.amountRecordBreaking}}</h3> 
+        </div>
+    </div>
+ </div>
+ 
